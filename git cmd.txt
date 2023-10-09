@@ -1,2 +1,2 @@
 1. git remote add origin https://github.com/piyushjainy/ds_oct_23.git
-2. git push -u origin main
+2. git push -u origin master
