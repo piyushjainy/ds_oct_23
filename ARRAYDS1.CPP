@@ -1,6 +1,7 @@
-#include<iostream.h>
+#include<iostream>
 #include<conio.h>
 #include<stdlib.h>
+using namespace std;
 void menu()
 {
   cout<<"\n1. Add element ";
@@ -94,7 +95,7 @@ void deleteByValue(int t[],int &c)
 }
   void insertValue(int t[],int &c)
   {
-     int n,pos;
+     int n,pos,j;
      if(c==4)
      {
 	cout<<"\nArray is full";
@@ -107,7 +108,7 @@ void deleteByValue(int t[],int &c)
 	cout<<"\nEnter new value to insert at "<<pos<<" location:";
 	cin>>n;
 	pos--;
-	for(int j=c;j>=pos;j--)
+	for(j=c;j>=pos;j--)
 	{
 	   t[j+1]=t[j];
 	}
@@ -144,14 +145,14 @@ void deleteByValue(int t[],int &c)
     }
 
   }
-void main()
+int main()
 
 {
    int ch,pos,n;
    const int size=5;
    int arr[size]={10,70,30,40};
    int cur=3;
-   clrscr();
+
    while(1)
    {
       menu();
@@ -200,4 +201,5 @@ void main()
 
    }
    getch();
+   return(0);
 }
