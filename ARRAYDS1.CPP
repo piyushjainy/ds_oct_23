@@ -12,6 +12,9 @@ void menu()
   cout<<"\n6. Insert any element at particular position";
   cout<<"\n7. Get Highest value in array.";
   cout<<"\n8. Reverse Array";
+  cout<<"\n10. Get Second Maximum Value";
+  cout<<"\n11. Check Sorted or not ";
+
   cout<<"\n9. Exit";
 }
 void addElement(int t[],int s,int &c)
@@ -88,10 +91,7 @@ void deleteByValue(int t[],int &c)
 	   t[j]=t[j+1];
 	}
 	c--;
-
       }
-
-
 }
   void insertValue(int t[],int &c)
   {
@@ -145,13 +145,44 @@ void deleteByValue(int t[],int &c)
     }
 
   }
+  int secondMax(int t[],int c)   // "10,70,30,40,70,30,70"
+  {
+     int fmp=0;
+     int smp=-1;
+
+     for(int i=1;i<=c;i++)
+     {
+         if(t[i]>t[fmp])
+         {
+             smp=fmp;
+             fmp=i;
+         }
+         else if(t[i]<t[fmp])
+         {
+             if(i!=smp && t[i] > t[smp])
+                smp=i;
+         }
+
+     }
+     return(smp);
+  }
+
+  int isSorted(int t[],int c)
+  {
+      for(int i=1;i<=c;i++)
+      {
+          if(t[i]<t[i-1])
+            return(0);
+      }
+      return(1);
+  }
 int main()
 
 {
    int ch,pos,n;
-   const int size=5;
-   int arr[size]={10,70,30,40};
-   int cur=3;
+   const int size=10;
+   int arr[size]={10,22,34,44,25,67,77};
+   int cur=6;
 
    while(1)
    {
@@ -193,6 +224,20 @@ int main()
 	 case 8:
 		reverseArray(arr,cur);
 		break;
+     case 10:
+            pos=secondMax(arr,cur);
+            if(pos==-1)
+                cout<<"\nNot having second highest element";
+            else
+                 cout<<"\n Second highest value is "<<arr[pos]<<" at "<<pos<<" location";
+             break;
+      case 11:
+              n=isSorted(arr,cur);
+              if(n==1)
+                cout<<"\nGiven array is in sorted order";
+              else
+                 cout<<"\nGiven array is unsorted";
+
 	 default:
 	     cout<<"\nInvalid Choice";
 
