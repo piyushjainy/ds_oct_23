@@ -14,6 +14,12 @@ void menu()
   cout<<"\n8. Reverse Array";
   cout<<"\n10. Get Second Maximum Value";
   cout<<"\n11. Check Sorted or not ";
+  cout<<"\n12. Remove Duplicates ";
+  cout<<"\n13. Move even and odd in different sides of array";
+  cout<<"\n14. Rotate Clock wise one time ";
+ cout<<"\n15. Rotate Clock wise n times ";
+
+
 
   cout<<"\n9. Exit";
 }
@@ -134,16 +140,15 @@ void deleteByValue(int t[],int &c)
     return(mp);
 
   }
-  void reverseArray(int t[],int c)
+  void reverseArray(int t[],int s,int d)  // 1    4
   {
-    int temp;
-    for(int i=0;i<c/2;i++)
+    int temp;  //10  20  30  40  50
+    for(int i=0;i<(d-s+1)/2;i++)
     {
-      temp=t[i];
-      t[i]=t[c-i];
-      t[c-i]=temp;
+      temp=t[s+i];
+      t[s+i]=t[d-i];
+      t[d-i]=temp;
     }
-
   }
   int secondMax(int t[],int c)   // "10,70,30,40,70,30,70"
   {
@@ -176,13 +181,89 @@ void deleteByValue(int t[],int &c)
       }
       return(1);
   }
+  void removeDuplicateSorted(int t[],int &c)
+  {
+
+      int i,j=0;
+
+      for(i=0;i<=c-1;i++)
+      {
+          if(t[i]!=t[i+1])
+          {
+              t[j++]=t[i];
+
+          }
+
+      }
+      t[j]=t[i];
+
+      c=j;
+  }
+
+  void evenoddmove(int t[],int c)
+  {
+       int i,j,temp;
+       i=0;
+       j=c;
+
+       while(i<j)
+       {
+            while(t[i]%2==0)
+                     i++;
+
+            while(t[j]%2==1)
+                     j--;
+
+            if(i<j)
+            {
+
+
+            temp=t[i];
+            t[i]=t[j];
+            t[j]=temp;
+            }
+
+            i++;
+            j--;
+        }
+
+  }
+void rotateRightOne(int t[],int c)
+{
+
+    int temp=t[c];
+    for(int i=c-1;i>=0;i--)
+    {
+        t[i+1]=t[i];
+    }
+    t[0]=temp;
+}
+void rotateRightMultiple(int t[],int c)
+{
+    int k;
+    cout<<"Enter no of rotation:";
+    cin>>k;
+    k=k%(c+1);
+
+
+  reverseArray(t,0,c-k);
+  reverseArray(t,c-k+1,c);
+  reverseArray(t,0,c);
+
+
+
+}
 int main()
 
 {
    int ch,pos,n;
-   const int size=10;
-   int arr[size]={10,22,34,44,25,67,77};
-   int cur=6;
+   const int size=5;
+   int arr[size]={10,20,30,40,50};
+   int cur=4;
+
+
+   //reverseArray(arr,1,3);
+   //displayAll(arr,cur);
 
    while(1)
    {
@@ -222,7 +303,7 @@ int main()
 		  cout<<"\n Highest element "<<arr[pos]<<" at "<<pos+1<<" location";
 		  break;
 	 case 8:
-		reverseArray(arr,cur);
+		reverseArray(arr,0,cur);
 		break;
      case 10:
             pos=secondMax(arr,cur);
@@ -237,7 +318,22 @@ int main()
                 cout<<"\nGiven array is in sorted order";
               else
                  cout<<"\nGiven array is unsorted";
+               break;
+      case 12:
+               removeDuplicateSorted(arr,cur);
+               break;
+      case 13:
+               evenoddmove(arr,cur);
+               break;
+      case 14:
+                rotateRightOne(arr,cur);
+                displayAll(arr,cur);
 
+                break;
+      case 15:
+              rotateRightMultiple(arr,cur);
+              displayAll(arr,cur);
+              break;
 	 default:
 	     cout<<"\nInvalid Choice";
 
