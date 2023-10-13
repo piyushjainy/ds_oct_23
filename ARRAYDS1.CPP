@@ -18,7 +18,10 @@ void menu()
   cout<<"\n13. Move even and odd in different sides of array";
   cout<<"\n14. Rotate Clock wise one time ";
  cout<<"\n15. Rotate Clock wise n times ";
-
+cout<<"\n16. Display all leaders in our array";
+cout<<"\n17. Maximum Difference in forward direction";
+cout<<"\n18. Display Frequency of element in sorted array";
+cout<<"\n19. Display Frequency of element in unsorted array";
 
 
   cout<<"\n9. Exit";
@@ -253,13 +256,76 @@ void rotateRightMultiple(int t[],int c)
 
 
 }
+void displayLeaders(int t[],int c)
+{
+  int i,max=t[c];
+
+    cout<<max<<"  ";
+  for(i=c-1;i>=0;i--)
+  {
+      if(t[i] > max)
+      {
+          max=t[i];
+          cout<<max<<"  ";
+
+      }
+
+  }
+
+}
+int maxDifference(int t[],int c)
+{
+   int i,j,mx,mn;
+
+   mx=t[1]-t[0];
+   mn=INT_MAX;
+
+   for(i=0;i<=c;i++)
+   {
+         if((t[i]-mn)>mx)
+             mx=t[i]-mn;
+
+        if(mn>t[i])
+            mn=t[i];
+
+   }
+   return(mx);
+
+}
+void displayFrequencySort(int t[],int c)
+{
+    //10,10,10,20,30,30,30,40,40,
+
+   int cnt=1,i,j;
+   for(i=1;i<=c;i++)
+   {
+       if(t[i]==t[i-1])
+       {
+           cnt++;
+       }
+       else
+       {
+           cout<<t[i-1]<<"---"<<cnt<<"\n";
+           cnt=1;
+       }
+
+   }
+
+  cout<<t[c]<<"----"<<cnt;
+}
+
+void displayFrequencyUnsort(int t[],int c)
+{
+
+}
+
 int main()
 
 {
    int ch,pos,n;
-   const int size=5;
-   int arr[size]={10,20,30,40,50};
-   int cur=4;
+   const int size=10;
+   int arr[size]={10,10,10,20,30,30,30,40,40,50};
+   int cur=9;
 
 
    //reverseArray(arr,1,3);
@@ -334,6 +400,20 @@ int main()
               rotateRightMultiple(arr,cur);
               displayAll(arr,cur);
               break;
+      case 16:
+                displayLeaders(arr,cur);
+                break;
+      case 17:
+                n= maxDifference(arr,cur);
+                cout<<"\nMaximum differnce is "<<n;
+                break;
+      case 18:
+              displayFrequencySort(arr,cur);
+              break;
+      case 19:
+              displayFrequencyUnsort(arr,cur);
+              break;
+
 	 default:
 	     cout<<"\nInvalid Choice";
 
